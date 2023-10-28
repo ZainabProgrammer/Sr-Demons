@@ -16,7 +16,12 @@ export const Cards = () => {
         {singlecat.map((e, index) => {
           return (
             <Box mt={5} mb={5} key={index}>
-              <Typography color="white.main" variant="h4" fontWeight="bold">
+              <Typography
+                key={index}
+                color="white.main"
+                variant="h4"
+                fontWeight="bold"
+              >
                 {e.title}
               </Typography>
               <Typography mt={2}>

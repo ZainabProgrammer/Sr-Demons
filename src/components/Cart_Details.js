@@ -87,7 +87,8 @@ export default function Cart_Details({ icon }) {
           Your shopping cart is empty
         </Typography>
         <Typography variant="body1" fontSize={15}>
-          Don't wait, let's get shopping and find your next deal today!
+          Don&apos;t wait, let&apos;s get shopping and find your next deal
+          today!
         </Typography>
         <div style={{ textAlign: "center" }}>
           <Button
