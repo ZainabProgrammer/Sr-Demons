@@ -13,9 +13,9 @@ export const Cards = () => {
   return (
     <>
       <Container maxWidth="xl">
-        {singlecat.map((e) => {
+        {singlecat.map((e, index) => {
           return (
-            <Box mt={5} mb={5}>
+            <Box mt={5} mb={5} key={index}>
               <Typography color="white.main" variant="h4" fontWeight="bold">
                 {e.title}
               </Typography>
