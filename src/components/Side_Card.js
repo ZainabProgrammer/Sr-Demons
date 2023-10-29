@@ -122,9 +122,10 @@ export default function Side_Card() {
 
   return (
     <>
-      {sub_data.map((e) => {
+      {sub_data.map((e, index) => {
         return (
           <Card
+            key={index}
             sx={{
               borderTop: `7px solid ${theme.palette.purple.main}`,
               width: "90%",
@@ -158,7 +159,7 @@ export default function Side_Card() {
                 >
                   PLATFORM <Divider />
                   {e.platform.map((e, index) => (
-                    <span direction="row" style={{ marginLeft: 7 }}>
+                    <span direction="row" style={{ marginLeft: 7 }} key={index}>
                       <Button
                         size="small"
                         variant="outlined"
@@ -184,7 +185,7 @@ export default function Side_Card() {
                 <Typography component="div" color="white.main" mt={3}>
                   BOOST METHOD <Divider />
                   {e.boost_method.map((e, index) => (
-                    <span direction="row" style={{ marginLeft: 7 }}>
+                    <span direction="row" style={{ marginLeft: 7 }} key={index}>
                       <Button
                         size="small"
                         variant="outlined"
@@ -216,7 +217,7 @@ export default function Side_Card() {
                 <Typography component="div" color="white.main" mt={3}>
                   EXECUTION OPTIONS <Divider />
                   {e.exec_options.map((e, index) => (
-                    <span direction="row" style={{ marginLeft: 7 }}>
+                    <span direction="row" style={{ marginLeft: 7 }} key={index}>
                       <Button
                         size="small"
                         variant="outlined"
@@ -253,6 +254,7 @@ export default function Side_Card() {
                       direction="row"
                       alignItems="center"
                       justifyContent="space-between"
+                      key={index}
                     >
                       <Box color="grey.main">
                         <Checkbox
