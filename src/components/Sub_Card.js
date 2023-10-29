@@ -78,7 +78,12 @@ const Sub_Card = ({ title, price, points, id, imageUrl }) => {
                 </li>
               ))}
             </ul>
-            <Typography mt={3} variant="subtitle1" color="grey.main">
+            <Typography
+              mt={3}
+              variant="subtitle1"
+              color="grey.main"
+              component="div"
+            >
               From
               <span
                 style={{

@@ -78,11 +78,12 @@ export default function FAQ({ title, descriptions }) {
           }}
         >
           <ul style={{ marginLeft: 3 }}>
-            {descriptions.map((description, index) => (
-              <li key={index} style={{ padding: 5, fontSize: 18 }}>
-                {description}
-              </li>
-            ))}
+            {descriptions &&
+              descriptions.map((description, index) => (
+                <li key={index} style={{ padding: 5, fontSize: 18 }}>
+                  {description}
+                </li>
+              ))}
           </ul>
         </AccordionDetails>
       </Accordion>

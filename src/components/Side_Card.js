@@ -49,7 +49,7 @@ export default function Side_Card() {
   const [exec_active, setexec_active] = React.useState(0);
   const [addButton, setaddButton] = React.useState(0);
   const [checkboxStates, setCheckboxStates] = React.useState(
-    Array(sub_data[0].add_options.length).fill(false)
+    Array(sub_data[0] && sub_data[0].add_options.length).fill(false)
   );
   const { conversionRate, loading, error } = useGetCurrency(
     "https://api.apilayer.com/currency_data/convert?to=EUR&from=USD&amount=1"
@@ -60,15 +60,7 @@ export default function Side_Card() {
   const toEuro = useSelector((state) => state.category.toEuro);
   const data = useSelector((state) => state.category.allData);
 
-  React.useEffect(() => {
-    if (toEuro && !loading && typeof conversionRate === "number") {
-      const convertedRate = calculateTotalPrice() * conversionRate;
-      dispatch(convertPricesToEuro(convertedRate));
-      console.log(data, "hmmmmm get or not");
-    }
-  }, []);
-
-  let basePrice = sub_data[0].price;
+  let basePrice = sub_data[0] && sub_data[0].price;
 
   const handleButtonClick = (index) => {
     setActiveButton(index);
@@ -91,11 +83,11 @@ export default function Side_Card() {
   const calculateTotalPrice = () => {
     let totalPrice = basePrice;
 
-    if (sub_data[0].boost_method[activeButton]) {
+    if (sub_data[0] && sub_data[0].boost_method[activeButton]) {
       totalPrice += sub_data[0].boost_method[activeButton].price;
     }
 
-    if (sub_data[0].exec_options[exec_active]) {
+    if (sub_data[0] && sub_data[0].exec_options[exec_active]) {
       totalPrice += sub_data[0].exec_options[exec_active].price;
     }
 
@@ -107,6 +99,15 @@ export default function Side_Card() {
 
     return totalPrice;
   };
+
+  React.useEffect(() => {
+    if (toEuro && !loading && typeof conversionRate === "number") {
+      const convertedRate = calculateTotalPrice() * conversionRate;
+      dispatch(convertPricesToEuro(convertedRate));
+      console.log(data, "hmmmmm get or not");
+    }
+  }, [calculateTotalPrice, data, dispatch, loading]);
+
   const [topPosition, setTopPosition] = React.useState(0);
   React.useEffect(() => {
     const handleScroll = () => {
@@ -143,14 +144,11 @@ export default function Side_Card() {
               <CardMedia
                 component="img"
                 height="440"
-                image={e.img}
+                image={e && e.img}
                 alt="green iguana"
                 sx={{ zIndex: -1 }}
               />
-              <CardContent
-                sx={{ zIndex: 1000, mt: -24, position: "relative" }}
-                disableRipple
-              >
+              <CardContent sx={{ zIndex: 1000, mt: -24, position: "relative" }}>
                 <Typography
                   gutterBottom
                   variant="h5"
@@ -158,127 +156,143 @@ export default function Side_Card() {
                   component="div"
                 >
                   PLATFORM <Divider />
-                  {e.platform.map((e, index) => (
-                    <span direction="row" style={{ marginLeft: 7 }} key={index}>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        sx={{
-                          ...(addButton === index
-                            ? {
-                                background: theme.palette.purple.main,
-                              }
-                            : {
-                                ":hover": {
-                                  background: theme.palette.purple.main,
-                                },
-                              }),
-                          ...btn_style,
-                        }}
-                        onClick={() => handleAddButton(index)}
+                  {e &&
+                    e.platform.map((e, index) => (
+                      <span
+                        direction="row"
+                        style={{ marginLeft: 7 }}
+                        key={index}
                       >
-                        {e}
-                      </Button>
-                    </span>
-                  ))}
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          sx={{
+                            ...(addButton === index
+                              ? {
+                                  background: theme.palette.purple.main,
+                                }
+                              : {
+                                  ":hover": {
+                                    background: theme.palette.purple.main,
+                                  },
+                                }),
+                            ...btn_style,
+                          }}
+                          onClick={() => handleAddButton(index)}
+                        >
+                          {e}
+                        </Button>
+                      </span>
+                    ))}
                 </Typography>
                 <Typography component="div" color="white.main" mt={3}>
                   BOOST METHOD <Divider />
-                  {e.boost_method.map((e, index) => (
-                    <span direction="row" style={{ marginLeft: 7 }} key={index}>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        sx={{
-                          ...(activeButton === index
-                            ? {
-                                background: theme.palette.purple.main,
-                                color: `${theme.palette.white.main} !important`,
-                              }
-                            : {
-                                ":hover": {
-                                  background: theme.palette.purple.main,
-                                },
-                              }),
-                          ...btn_style,
-                        }}
-                        onClick={() => handleButtonClick(index)}
+                  {e &&
+                    e.boost_method.map((e, index) => (
+                      <span
+                        direction="row"
+                        style={{ marginLeft: 7 }}
+                        key={index}
                       >
-                        {e.method} &nbsp;
-                        {e.price > 0 && (
-                          <span>
-                            {toEuro ? `+€ ${e.price}` : `+$${e.price}`}
-                          </span>
-                        )}
-                      </Button>
-                    </span>
-                  ))}
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          sx={{
+                            ...(activeButton === index
+                              ? {
+                                  background: theme.palette.purple.main,
+                                  color: `${theme.palette.white.main} !important`,
+                                }
+                              : {
+                                  ":hover": {
+                                    background: theme.palette.purple.main,
+                                  },
+                                }),
+                            ...btn_style,
+                          }}
+                          onClick={() => handleButtonClick(index)}
+                        >
+                          {e.method} &nbsp;
+                          {e && e.price > 0 && (
+                            <span>
+                              {toEuro ? `+€ ${e.price}` : `+$${e.price}`}
+                            </span>
+                          )}
+                        </Button>
+                      </span>
+                    ))}
                 </Typography>
                 <Typography component="div" color="white.main" mt={3}>
                   EXECUTION OPTIONS <Divider />
-                  {e.exec_options.map((e, index) => (
-                    <span direction="row" style={{ marginLeft: 7 }} key={index}>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        sx={{
-                          ...(exec_active === index
-                            ? {
-                                background: theme.palette.purple.main,
-                                color: `${theme.palette.white.main} !important`,
-                              }
-                            : {
-                                ":hover": {
-                                  background: theme.palette.purple.main,
-                                },
-                              }),
-                          ...btn_style,
-                        }}
-                        onClick={() => handleExecButton(index)}
+                  {e &&
+                    e.exec_options.map((e, index) => (
+                      <span
+                        direction="row"
+                        style={{ marginLeft: 7 }}
+                        key={index}
                       >
-                        {e.option}&nbsp;
-                        {e.price > 0 && (
-                          <span>
-                            {toEuro ? `+€ ${e.price}` : `+$${e.price}`}
-                          </span>
-                        )}
-                      </Button>
-                    </span>
-                  ))}
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          sx={{
+                            ...(exec_active === index
+                              ? {
+                                  background: theme.palette.purple.main,
+                                  color: `${theme.palette.white.main} !important`,
+                                }
+                              : {
+                                  ":hover": {
+                                    background: theme.palette.purple.main,
+                                  },
+                                }),
+                            ...btn_style,
+                          }}
+                          onClick={() => handleExecButton(index)}
+                        >
+                          {e.option}&nbsp;
+                          {e && e.price > 0 && (
+                            <span>
+                              {toEuro ? `+€ ${e.price}` : `+$${e.price}`}
+                            </span>
+                          )}
+                        </Button>
+                      </span>
+                    ))}
                 </Typography>
                 <Typography component="div" color="white.main" mt={3}>
                   ADDITIONAL OPTIONS <Divider />
-                  {e.add_options.map((el, index) => (
-                    <Stack
-                      mb={-1}
-                      direction="row"
-                      alignItems="center"
-                      justifyContent="space-between"
-                      key={index}
-                    >
-                      <Box color="grey.main">
-                        <Checkbox
-                          sx={{
-                            color: "grey",
-                            "&.Mui-checked": {
-                              color: theme.palette.purple.main,
-                            },
-                          }}
-                          checked={checkboxStates[index]}
-                          onChange={() => handleCheckboxChange(index)}
-                        />
-                        <span>{el.name}</span>
-                      </Box>
+                  {e &&
+                    e.add_options.map((el, index) => (
+                      <Stack
+                        mb={-1}
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        key={index}
+                      >
+                        <Box color="grey.main">
+                          <Checkbox
+                            sx={{
+                              color: "grey",
+                              "&.Mui-checked": {
+                                color: theme.palette.purple.main,
+                              },
+                            }}
+                            checked={checkboxStates[index]}
+                            onChange={() => handleCheckboxChange(index)}
+                          />
+                          <span>{el.name}</span>
+                        </Box>
 
-                      <Box>
-                        {el.price > 0 && (
-                          <span>
-                            {toEuro ? `+€ ${el.price}` : `+$${el.price}`}
-                          </span>
-                        )}
-                      </Box>
-                    </Stack>
-                  ))}
+                        <Box>
+                          {el.price > 0 && (
+                            <span>
+                              {toEuro ? `+€ ${el.price}` : `+$${el.price}`}
+                            </span>
+                          )}
+                        </Box>
+                      </Stack>
+                    ))}
                 </Typography>
                 <Box
                   sx={{
@@ -318,7 +332,7 @@ export default function Side_Card() {
                     >
                       <QueryBuilderIcon fontSize="small" color="white" />
                       <Typography color="white.main">
-                        {e.order_comp}{" "}
+                        {e && e.order_comp}{" "}
                         <span style={{ color: "grey" }}>order completion</span>
                       </Typography>
                     </Typography>

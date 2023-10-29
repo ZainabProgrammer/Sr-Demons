@@ -101,23 +101,21 @@ export default function SideMenu({ title, descriptions }) {
         <AccordionDetails sx={{ background: theme.palette.lightBlack.main }}>
           <List>
             {descriptions.map((description, index) => (
-              <>
-                <Link href={`/sub_category/${description}`}>
-                  <ListItem
-                    sx={{
-                      ":hover": {
-                        background: theme.palette.lightBlack.main,
-                        cursor: "pointer",
-                        color: theme.palette.white.main,
-                        maxWidth: "100%",
-                      },
-                    }}
-                    key={index}
-                  >
-                    <ListItemText primary={description} />
-                  </ListItem>
-                </Link>
-              </>
+              <Link href={`/sub_category/${description}`} key={index}>
+                <ListItem
+                  sx={{
+                    ":hover": {
+                      background: theme.palette.lightBlack.main,
+                      cursor: "pointer",
+                      color: theme.palette.white.main,
+                      maxWidth: "100%",
+                    },
+                  }}
+                  key={index}
+                >
+                  <ListItemText primary={description} />
+                </ListItem>
+              </Link>
             ))}
           </List>
         </AccordionDetails>

@@ -59,7 +59,7 @@ export const Cards = () => {
         ))}
       </Grid>
       <Container maxWidth="xl" sx={{ marginTop: 8, marginLeft: 0 }}>
-        {singlecat.map((e) => {
+        {singlecat.map((e, index) => {
           return (
             <>
               <Typography
@@ -67,6 +67,7 @@ export const Cards = () => {
                 variant="h4"
                 fontWeight="bold"
                 mb={3}
+                key={index}
               >
                 {e.title} service includes
               </Typography>

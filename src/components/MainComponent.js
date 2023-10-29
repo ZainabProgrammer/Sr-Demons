@@ -6,6 +6,8 @@ import FAQ from "./FAQ";
 import { useRouter } from "next/router";
 import Side_Card from "./Side_Card";
 import Main_FAQ from "./Main_FAQ";
+import { NextResponse } from "next/server";
+import Script from "next/script";
 
 const main_heading = {
   fontWeight: "bold",
@@ -18,20 +20,26 @@ const listItem = {
 };
 
 const MainComponent = () => {
+  const theme = useTheme();
   const category = useSelector((state) => state.category.allData);
   let singlecat = category.flatMap((e) => e.categories);
   let faqData = singlecat.map((e) => e.faqData);
   let corr = faqData.map((e) => e);
-
   const router = useRouter();
+
   const { title: category_title } = router.query; // Get the title from the URL query
+  console.log(category_title), "is that object";
+  // if (!category_title) {
+  //   return NextResponse.json({
+  //     message: "Title is dynamic route",
+  //   });
+  // }
 
   let subs = singlecat.map((e) => e.sub_category).map((e) => e);
   let sub_data = subs
     .flatMap((e) => e.find((e) => e.title === category_title))
     .map((e) => e);
-
-  const theme = useTheme();
+  // console.log(sub_data.map((e) => e.title).toString(), "sub show show show");
   return (
     <Grid container spacing={0} direction="row-reverse">
       <Grid item xs={12} sm={12} md={4}>
@@ -47,7 +55,7 @@ const MainComponent = () => {
                   "@media (min-width:900px)": { display: "none" },
                 }}
               >
-                {sub_data && sub_data.map((e) => e.title)}
+                {sub_data && sub_data.map((e) => e && e.title).toString()}
               </Typography>
             );
           })}
@@ -77,7 +85,7 @@ const MainComponent = () => {
                     "@media (max-width:900px)": { display: "none" },
                   }}
                 >
-                  {sub_data.map((e) => e.title)}
+                  {sub_data.map((e) => e && e.title).toString()}
                 </Typography>
               </Stack>
               <Container
@@ -85,10 +93,12 @@ const MainComponent = () => {
                 sx={{ marginLeft: "-20px", marginTop: 2 }}
               >
                 <Typography variant="body1">
-                  {sub_data.map((e) => e.description.map((e) => e.main))}
+                  {sub_data.map((e) => e && e.description.map((e) => e.main))}
                 </Typography>
                 <Typography variant="body" sx={{ marginTop: 1 }}>
-                  {sub_data.map((e) => e.description.map((el) => el.other))}
+                  {sub_data.map(
+                    (e) => e && e.description.map((el) => el.other)
+                  )}
                 </Typography>
               </Container>
               <Container
@@ -99,37 +109,43 @@ const MainComponent = () => {
                   What you will get
                 </Typography>
                 <ul style={{ marginLeft: 20, padding: 1 }}>
-                  {sub_data.map((e) =>
-                    e.features.map((feature, index) => {
-                      return (
-                        <li key={index} sx={listItem} style={{ fontSize: 18 }}>
-                          {index < 3 ? (
-                            <>
-                              <Typography
-                                variant="body1"
-                                style={{
-                                  color: theme.palette.green.main,
-                                  fontSize: 18,
-                                  padding: 3,
-                                }}
-                              >
-                                {feature}
-                              </Typography>
-                            </>
-                          ) : (
-                            <>
-                              <li
-                                key={index}
-                                sx={listItem}
-                                style={{ fontSize: 18, padding: 3 }}
-                              >
-                                {feature}
-                              </li>
-                            </>
-                          )}
-                        </li>
-                      );
-                    })
+                  {sub_data.map(
+                    (e) =>
+                      e &&
+                      e.features.map((feature, index) => {
+                        return (
+                          <li
+                            key={index}
+                            sx={listItem}
+                            style={{ fontSize: 18 }}
+                          >
+                            {index < 3 ? (
+                              <>
+                                <Typography
+                                  variant="body1"
+                                  style={{
+                                    color: theme.palette.green.main,
+                                    fontSize: 18,
+                                    padding: 3,
+                                  }}
+                                >
+                                  {feature}
+                                </Typography>
+                              </>
+                            ) : (
+                              <>
+                                <li
+                                  key={index}
+                                  sx={listItem}
+                                  style={{ fontSize: 18, padding: 3 }}
+                                >
+                                  {feature}
+                                </li>
+                              </>
+                            )}
+                          </li>
+                        );
+                      })
                   )}
                 </ul>
               </Container>
@@ -200,11 +216,11 @@ const MainComponent = () => {
           maxWidth="md"
           sx={{ marginLeft: "-10px", marginTop: 2, marginBottom: 2 }}
         >
-          {sub_data.map((e) => {
+          {sub_data.map((e, index) => {
             return (
               <FAQ
-                key={e.id}
-                descriptions={e.working.map((e) => e)}
+                key={index}
+                descriptions={e && e.working.map((e) => e)}
                 title="How it works"
               />
             );
@@ -214,11 +230,11 @@ const MainComponent = () => {
           maxWidth="md"
           sx={{ marginLeft: "-10px", marginTop: 2, marginBottom: 2 }}
         >
-          {singlecat.map((e) => {
+          {singlecat.map((e, index) => {
             return (
               <>
                 <FAQ
-                  key={e.id}
+                  key={index}
                   title="Requirements"
                   descriptions={e.requirements.map((e) => (
                     <>
@@ -248,7 +264,7 @@ const MainComponent = () => {
             marginLeft={2}
             fontWeight="bold"
           >
-            {sub_data.map((e) => e.title)} FAQ
+            {sub_data.map((e) => e && e.title)} FAQ
           </Typography>
           <Main_FAQ />
         </Box>
