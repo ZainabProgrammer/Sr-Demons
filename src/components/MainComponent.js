@@ -92,10 +92,14 @@ const MainComponent = () => {
                 maxWidth="sm"
                 sx={{ marginLeft: "-20px", marginTop: 2 }}
               >
-                <Typography variant="body1">
+                <Typography variant="body1" color="grey.main">
                   {sub_data.map((e) => e && e.description.map((e) => e.main))}
                 </Typography>
-                <Typography variant="body" sx={{ marginTop: 1 }}>
+                <Typography
+                  color="grey.main"
+                  variant="body"
+                  sx={{ marginTop: 1 }}
+                >
                   {sub_data.map(
                     (e) => e && e.description.map((el) => el.other)
                   )}
@@ -137,7 +141,11 @@ const MainComponent = () => {
                                 <li
                                   key={index}
                                   sx={listItem}
-                                  style={{ fontSize: 18, padding: 3 }}
+                                  style={{
+                                    fontSize: 18,
+                                    padding: 3,
+                                    color: theme.palette.grey.main,
+                                  }}
                                 >
                                   {feature}
                                 </li>
@@ -171,7 +179,11 @@ const MainComponent = () => {
                       <li
                         key={index}
                         sx={listItem}
-                        style={{ fontSize: 18, padding: 3 }}
+                        style={{
+                          fontSize: 18,
+                          padding: 3,
+                          color: theme.palette.grey.main,
+                        }}
                       >
                         {feature}
                       </li>
@@ -201,7 +213,11 @@ const MainComponent = () => {
                       <li
                         key={index}
                         sx={listItem}
-                        style={{ fontSize: 18, padding: 3 }}
+                        style={{
+                          fontSize: 18,
+                          padding: 3,
+                          color: theme.palette.grey.main,
+                        }}
                       >
                         {feature}
                       </li>
