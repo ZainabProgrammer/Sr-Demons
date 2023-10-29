@@ -24,7 +24,7 @@ export const Cards = () => {
               >
                 {e.title}
               </Typography>
-              <Typography mt={2}>
+              <Typography mt={2} color="grey.main">
                 {e.description.map((e) => e.main)}{" "}
                 <Typography
                   component="span"
@@ -35,7 +35,9 @@ export const Cards = () => {
                 </Typography>
               </Typography>
 
-              <Typography>{e.description.map((e) => e.other)}</Typography>
+              <Typography color="grey.main">
+                {e.description.map((e) => e.other)}
+              </Typography>
             </Box>
           );
         })}
@@ -71,7 +73,7 @@ export const Cards = () => {
               >
                 {e.title} service includes
               </Typography>
-              <Typography>{e.services}</Typography>
+              <Typography color="grey.main">{e.services}</Typography>
               <Typography
                 variant="h4"
                 color="white.main"
@@ -93,7 +95,7 @@ export const Cards = () => {
                     >
                       {e.question}
                     </Typography>
-                    <Typography color="inherit">{e.answer}</Typography>
+                    <Typography color="grey.main">{e.answer}</Typography>
                   </>
                 );
               })}
