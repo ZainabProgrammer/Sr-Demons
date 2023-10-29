@@ -66,7 +66,7 @@ export default function Side_Card() {
       dispatch(convertPricesToEuro(convertedRate));
       console.log(data, "hmmmmm get or not");
     }
-  }, [toEuro, conversionRate]);
+  }, []);
 
   let basePrice = sub_data[0].price;
 
