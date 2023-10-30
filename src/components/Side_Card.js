@@ -12,12 +12,12 @@ import {
   Stack,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import { useRouter } from "next/router";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import useGetCurrency from "./custom_hooks/useGetCurrency";
 import { useDispatch, useSelector } from "react-redux";
 import { convertPricesToEuro } from "@/store/CategorySlice";
 import { ShoppingCart } from "@mui/icons-material";
+import useFetchData from "./custom_hooks/useFetchData";
 
 const btn_style = {
   border: "1px solid purple.main",
@@ -25,26 +25,12 @@ const btn_style = {
   textTransform: "capitalize",
   textAlign: "start",
   marginTop: 1,
-  "&:hover": {
-    // border: "1px solid purple.main",
-    // background: "pruple.main",
-    // color: "white.main",
-  },
+  "&:hover": {},
 };
 
 export default function Side_Card() {
   const theme = useTheme();
-  const category = useSelector((state) => state.category.allData);
-  let singlecat = category.flatMap((e) => e.categories);
-
-  const router = useRouter();
-  const { title: category_title } = router.query;
-
-  let subs = singlecat.map((e) => e.sub_category).map((e) => e);
-  let sub_data = subs
-    .flatMap((e) => e.find((e) => e.title === category_title))
-    .map((e) => e);
-
+  const { singlecat, sub_data } = useFetchData();
   const [activeButton, setActiveButton] = React.useState(0);
   const [exec_active, setexec_active] = React.useState(0);
   const [addButton, setaddButton] = React.useState(0);
@@ -109,6 +95,7 @@ export default function Side_Card() {
   }, [calculateTotalPrice, data, dispatch, loading]);
 
   const [topPosition, setTopPosition] = React.useState(0);
+
   React.useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;

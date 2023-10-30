@@ -8,23 +8,23 @@ import Toolbar from "@mui/material/Toolbar";
 import { useTheme } from "@emotion/react";
 
 import Header from "./Header";
-import { useSelector } from "react-redux";
 import SideMenu from "./SideMenu";
 import Link from "next/link";
 import Breadcrumb from "./BreadCrumb";
 import Home from "./Home";
+import useFetchData from "./custom_hooks/useFetchData";
 const drawerWidth = 240;
 
 function Sidebar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const category = useSelector((state) => state.category.allData);
-  let singlecat = category.flatMap((e) => e.categories);
+  const { singlecat } = useFetchData();
 
   const theme = useTheme();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const Icon = props.icon;
   const drawer = (
     <div>
