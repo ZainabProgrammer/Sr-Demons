@@ -92,7 +92,13 @@ const MainComponent = () => {
                 <Typography variant="h3" sx={main_heading} mt={6} mb={3}>
                   What you will get
                 </Typography>
-                <ul style={{ marginLeft: 20, padding: 1 }}>
+                <ul
+                  style={{
+                    marginLeft: 20,
+                    padding: 1,
+                    color: theme.palette.green.main,
+                  }}
+                >
                   {sub_data.map(
                     (e) =>
                       e &&
@@ -101,7 +107,10 @@ const MainComponent = () => {
                           <li
                             key={index}
                             sx={listItem}
-                            style={{ fontSize: 18 }}
+                            style={{
+                              fontSize: 18,
+                              color: theme.palette.green.main,
+                            }}
                           >
                             {index < 3 ? (
                               <>

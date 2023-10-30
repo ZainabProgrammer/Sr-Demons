@@ -47,6 +47,7 @@ export default function Breadcrumb() {
             </Typography>
           </Link>
         )}
+
         {sub && (
           <Link
             underline="hover"
