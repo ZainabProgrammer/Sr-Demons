@@ -6,24 +6,22 @@ import { useTheme } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import CloseIcon from "@mui/icons-material/Close";
+import useFetchData from "./custom_hooks/useFetchData";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCart } from "@/store/CategorySlice";
 
 export default function Cart_Details({ icon }) {
-  const [state, setState] = React.useState({
-    right: false, // Only 'right' anchor is used
-  });
   const theme = useTheme();
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
+  const { isCartOpen } = useFetchData();
+  const dispatch = useDispatch();
 
-    setState({ ...state, [anchor]: open });
+  const toggleDrawer = (anchor, open) => () => {
+    dispatch(toggleCart());
+
+    return;
   };
 
+  console.log(isCartOpen, "are they same");
   const list = (anchor) => (
     <Box
       sx={{
@@ -121,7 +119,7 @@ export default function Cart_Details({ icon }) {
       </div>
       <SwipeableDrawer
         anchor="right"
-        open={state.right}
+        open={isCartOpen}
         onClose={toggleDrawer("right", false)}
         onOpen={toggleDrawer("right", true)}
       >

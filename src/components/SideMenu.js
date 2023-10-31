@@ -1,10 +1,10 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
+import AddIcon from "@mui/icons-material/Add";
 import {
   Box,
   Container,
@@ -14,7 +14,9 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
+import RemoveIcon from "@mui/icons-material/Remove";
 import Link from "next/link";
+
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -27,27 +29,22 @@ const Accordion = styled((props) => (
   },
 }));
 
-const AccordionSummary = styled((props) => (
-  <MuiAccordionSummary
-    expandIcon={
-      <ArrowForwardIosSharpIcon color="grey" sx={{ fontSize: "0.9rem" }} />
-    }
-    {...props}
-  />
-))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark"
-      ? "rgba(255, 255, 255, .05)"
-      : "rgba(0, 0, 0, .03)",
-  flexDirection: "row-reverse",
-  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-    transform: "rotate(90deg)",
-    color: theme.palette.grey.main,
-  },
-  "& .MuiAccordionSummary-content": {
-    marginLeft: theme.spacing(1),
-  },
-}));
+const AccordionSummary = styled((props) => <MuiAccordionSummary {...props} />)(
+  ({ theme }) => ({
+    backgroundColor:
+      theme.palette.mode === "dark"
+        ? "rgba(255, 255, 255, .05)"
+        : "rgba(0, 0, 0, .03)",
+    flexDirection: "row",
+    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+      transform: "scale(1.4)",
+      color: theme.palette.grey.main,
+    },
+    "& .MuiAccordionSummary-content": {
+      marginLeft: theme.spacing(1),
+    },
+  })
+);
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -90,7 +87,30 @@ export default function SideMenu({ title, descriptions }) {
           color: theme.palette.grey.main,
         }}
       >
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+        <AccordionSummary
+          aria-controls="panel1d-content"
+          id="panel1d-header"
+          sx={{
+            borderLeft: expanded
+              ? `3px solid ${theme.palette.purple.main}`
+              : "",
+            background: expanded ? "#1E1B55" : "",
+            color: expanded ? theme.palette.white.main : "",
+          }}
+          expandIcon={
+            !expanded ? (
+              <AddIcon
+                color="grey"
+                sx={{ fontSize: "1.2rem", fontWeight: "bold" }}
+              />
+            ) : (
+              <RemoveIcon
+                color="white"
+                sx={{ fontSize: ".9rem", fontWeight: "bold" }}
+              />
+            )
+          }
+        >
           <Link href={`/category/${title}`}>
             <Typography sx={{ fontWeight: "bold", color: "inherit" }}>
               {title}

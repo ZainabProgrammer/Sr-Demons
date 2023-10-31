@@ -7,10 +7,14 @@ const categorySlice = createSlice({
   initialState: {
     allData: [data], // Assuming this is your data structure
     toEuro: false,
+    isCartOpen: false,
   },
   reducers: {
     toggleCurrency: (state, action) => {
       state.toEuro = action.payload;
+    },
+    toggleCart: (state, action) => {
+      state.isCartOpen = action.payload;
     },
 
     // Create a new action to convert prices to Euro
@@ -51,6 +55,7 @@ const categorySlice = createSlice({
   },
 });
 
-export const { toggleCurrency, convertPricesToEuro } = categorySlice.actions;
+export const { toggleCurrency, convertPricesToEuro, toggleCart } =
+  categorySlice.actions;
 
 export default categorySlice.reducer;

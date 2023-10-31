@@ -20,7 +20,8 @@ import { useState } from "react";
 import { useTheme } from "@emotion/react";
 import Cart_Details from "./Cart_Details";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCurrency } from "@/store/CategorySlice";
+import { toggleCart, toggleCurrency } from "@/store/CategorySlice";
+import useFetchData from "./custom_hooks/useFetchData";
 
 const iconStyle = {
   borderRadius: "50%",
@@ -41,21 +42,21 @@ const Header = ({ handleDrawerToggle }) => {
   const handleChange = (event) => {
     // setCurrency(event.target.value);
   };
-  // console.log(data, "apoi res");
+  const { isCartOpen } = useFetchData();
+  const dispatch = useDispatch();
   const handleSearchClick = () => {
     setSearchOpen(!isSearchOpen);
   };
   const theme = useTheme();
-  const [isCartOpen, setIsCartOpen] = React.useState(false);
 
   const openCart = () => {
-    setIsCartOpen(true);
+    dispatch(() => toggleCart(true));
   };
 
   const closeCart = () => {
-    setIsCartOpen(false);
+    dispatch(() => toggleCart(false));
   };
-  const dispatch = useDispatch();
+
   return (
     <div>
       <AppBar
@@ -224,9 +225,13 @@ const Header = ({ handleDrawerToggle }) => {
                 />
               </Typography>
 
-              <div onClick={openCart} style={{ cursor: "pointer" }}>
+              <div
+                onClick={() => dispatch(toggleCart(true))}
+                style={{ cursor: "pointer" }}
+              >
                 <Cart_Details
-                  openCart={openCart}
+                  // openCart={dispatch(toggleCart(false))}
+                  // closeCart={dispatch(toggleCart(false))}
                   icon={
                     <>
                       <Typography

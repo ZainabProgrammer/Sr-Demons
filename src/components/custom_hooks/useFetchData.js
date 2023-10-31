@@ -17,7 +17,9 @@ const useFetchData = () => {
   let cate = singlecat.find((e) => e.category === category_title);
   let sub_cate = subs.flatMap((e) => e.map((e) => e.title));
   let sub = sub_cate.find((e) => e === category_title);
-  return { cate, sub, router, singlecat, sub_data };
+  const isCartOpen = useSelector((state) => state.category.isCartOpen);
+
+  return { cate, sub, router, singlecat, sub_data, isCartOpen };
 };
 
 export default useFetchData;

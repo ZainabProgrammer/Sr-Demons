@@ -110,12 +110,10 @@ function Sidebar(props) {
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           // background: `url("https://images.unsplash.com/photo-1476370648495-3533f64427a2?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGRhcmt8ZW58MHx8MHx8fDA%3D") no-repeat`,
-
           width: "100%",
           color: "white",
           backgroundSize: "cover", // Maintain the aspect ratio
           backgroundPosition: "center",
-          // opacity: 0.9,
         }}
       >
         <Toolbar />

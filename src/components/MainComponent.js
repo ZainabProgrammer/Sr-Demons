@@ -1,11 +1,10 @@
 import { useTheme } from "@emotion/react";
-import { Alert, Box, Container, Grid, Stack, Typography } from "@mui/material";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import FAQ from "./FAQ";
 import Side_Card from "./Side_Card";
 import Main_FAQ from "./Main_FAQ";
 import useFetchData from "./custom_hooks/useFetchData";
-import CheckIcon from "@mui/icons-material/Check";
 import Info from "./Info";
 
 const main_heading = {

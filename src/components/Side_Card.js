@@ -1,5 +1,4 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -15,9 +14,12 @@ import { useTheme } from "@emotion/react";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import useGetCurrency from "./custom_hooks/useGetCurrency";
 import { useDispatch, useSelector } from "react-redux";
-import { convertPricesToEuro } from "@/store/CategorySlice";
+import { convertPricesToEuro, toggleCart } from "@/store/CategorySlice";
 import { ShoppingCart } from "@mui/icons-material";
 import useFetchData from "./custom_hooks/useFetchData";
+import styled from "@emotion/styled";
+import dynamic from "next/dynamic";
+const DynamicCard = dynamic(() => import("@mui/material/Card"), { ssr: false });
 
 const btn_style = {
   border: "1px solid purple.main",
@@ -25,8 +27,15 @@ const btn_style = {
   textTransform: "capitalize",
   textAlign: "start",
   marginTop: 1,
-  "&:hover": {},
 };
+
+const StyledCardActionArea = styled(CardActionArea)(
+  ({ theme }) => `
+    .MuiCardActionArea-focusHighlight {
+        background: transparent;
+    }
+`
+);
 
 export default function Side_Card() {
   const theme = useTheme();
@@ -99,7 +108,7 @@ export default function Side_Card() {
   React.useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY || window.pageYOffset;
-      const newPosition = Math.max(2, 170 - scrollY); // Adjust 100 to the desired distance
+      const newPosition = Math.max(3, 270 - scrollY); // Adjust 100 to the desired distance
       setTopPosition(newPosition);
     };
     window.addEventListener("scroll", handleScroll);
@@ -112,30 +121,48 @@ export default function Side_Card() {
     <>
       {sub_data.map((e, index) => {
         return (
-          <Card
+          <DynamicCard
             key={index}
             sx={{
               borderTop: `7px solid ${theme.palette.purple.main}`,
               width: "90%",
               background: theme.palette.lightBlack.main,
+              ":hover": {
+                background: "none",
+              },
               color: "white.main",
               "@media (max-width:500px)": {
                 width: "100%",
               },
-              ":focus": {
-                background: theme.palette.lightBlack.main,
-              },
             }}
           >
-            <CardActionArea disableRipple>
+            <CardActionArea
+              disableRipple
+              sx={{
+                "&:hover": {
+                  background: "transparent", // Override the hover effect with the same transparent background
+                },
+                background: theme.palette.lightBlack.main,
+              }}
+            >
               <CardMedia
                 component="img"
                 height="440"
                 image={e && e.img}
                 alt="green iguana"
-                sx={{ zIndex: -1 }}
+                sx={{
+                  zIndex: -1,
+                  ":hover": { background: theme.palette.lightBlack.main },
+                }}
               />
-              <CardContent sx={{ zIndex: 1000, mt: -24, position: "relative" }}>
+              <CardContent
+                sx={{
+                  zIndex: 1000,
+                  mt: -24,
+                  position: "relative",
+                  backgroundColor: theme.palette.lightBlack.main,
+                }}
+              >
                 <Typography
                   gutterBottom
                   variant="h5"
@@ -285,7 +312,8 @@ export default function Side_Card() {
                   sx={{
                     position: "sticky",
                     bottom: `${topPosition}px`,
-                    padding: "10px",
+                    padding: "11px",
+                    paddingBottom: "60px",
                     width: "100%",
                     left: 0,
                     background: theme.palette.lightBlack.main,
@@ -335,6 +363,7 @@ export default function Side_Card() {
                         opacity: 0.9,
                       },
                     }}
+                    onClick={() => dispatch(toggleCart(true))}
                     variant="contained"
                   >
                     <ShoppingCart sx={{ marginRight: 1 }} />
@@ -343,7 +372,7 @@ export default function Side_Card() {
                 </Box>
               </CardContent>
             </CardActionArea>
-          </Card>
+          </DynamicCard>
         );
       })}
     </>
