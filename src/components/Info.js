@@ -9,10 +9,11 @@ const Info = () => {
   return (
     <div>
       {sub_data.map(
-        (e) =>
+        (e, index) =>
           e &&
           e.info_bar && (
             <Typography
+              key={index}
               sx={{
                 background: theme.palette.orange.main,
                 width: "86%",
