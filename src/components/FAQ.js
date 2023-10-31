@@ -39,7 +39,7 @@ const AccordionSummary = styled((props) => (
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
+  padding: theme.spacing(3),
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
@@ -80,7 +80,13 @@ export default function FAQ({ title, descriptions }) {
           <ul style={{ marginLeft: 3 }}>
             {descriptions &&
               descriptions.map((description, index) => (
-                <li key={index} style={{ padding: 5, fontSize: 18 }}>
+                <li
+                  key={index}
+                  style={{
+                    padding: 5,
+                    fontSize: 18,
+                  }}
+                >
                   {description}
                 </li>
               ))}

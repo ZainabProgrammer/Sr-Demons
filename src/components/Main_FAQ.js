@@ -8,6 +8,7 @@ import { Container } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import useFetchData from "./custom_hooks/useFetchData";
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -54,59 +55,58 @@ export default function Main_FAQ() {
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
-
-  const category = useSelector((state) => state.category.allData);
-  let singlecat = category.flatMap((e) => e.categories);
-  let faqData = singlecat.map((e) => e.faqData);
-  let corr = faqData.map((e) => e);
-  console.log(
-    corr.map((e) => e.map((e) => e)),
-    "faq from faq"
-  );
+  const { sub_data } = useFetchData();
   const theme = useTheme();
+  let faq = sub_data.map((e) => e && e.faq);
 
   return (
     <Container maxWidth="md" sx={{ marginLeft: "-10px", mt: 5 }}>
-      {corr[0].map((item, index) => (
-        <Accordion
-          key={index} // Use index as the key
-          expanded={expanded === index} // Check the expanded state against the index
-          onChange={handleChange(index)} // Pass the index to the handleChange function
-        >
-          <AccordionSummary
-            aria-controls={`panel${index}-content`}
-            id={`panel${index}-header`}
-            sx={{
-              background: theme.palette.bodyColor.light,
-              marginTop: 2,
-              color: theme.palette.grey.main,
-            }}
+      {faq[0] &&
+        faq[0].map((item, index) => (
+          <Accordion
+            key={index} // Use index as the key
+            expanded={expanded === index} // Check the expanded state against the index
+            onChange={handleChange(index)} // Pass the index to the handleChange function
           >
-            <Typography
-              sx={{
-                fontWeight: "bold",
-                color: theme.palette.white.main,
-                fontSize: 20,
-              }}
-            >
-              {item.question}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
+            <AccordionSummary
+              aria-controls={`panel${index}-content`}
+              id={`panel${index}-header`}
               sx={{
                 background: theme.palette.bodyColor.light,
+                marginTop: 2,
                 color: theme.palette.grey.main,
-                paddingLeft: 3,
-                paddingRight: 2,
-                paddingBottom: 2,
               }}
             >
-              {item.answer}
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-      ))}
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  color: theme.palette.white.main,
+                  fontSize: 20,
+                }}
+              >
+                {item.question}
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography
+                sx={{
+                  background: theme.palette.bodyColor.light,
+                  color: theme.palette.grey.main,
+                  paddingLeft: 3,
+                  paddingRight: 2,
+                  paddingBottom: 2,
+                }}
+              >
+                {item.answer.split(";").map((part, index) => (
+                  <React.Fragment key={index}>
+                    {part}
+                    {index < item.answer.split(";").length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
     </Container>
   );
 }

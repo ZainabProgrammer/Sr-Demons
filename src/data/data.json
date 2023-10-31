@@ -32,6 +32,7 @@
                             "other": "After five victories, we will complete Champion's Quest and get all three bomb's parts that have negative effects as well. So your Warzone 2 Nuke booster will initiate the quest, assemble the parts, and defend the bomb for you to demolish the map and get rewards with no hassle!"
                         }
                     ],
+                    "info_bar": "The order completion time may be extended during the event, as the Nuke can only be completed by playing in pairs.",
                     "platform": [
                         "PC",
                         "PS4/PS5",
@@ -45,6 +46,12 @@
                         {
                             "method": "Self Play",
                             "price": 149.99
+                        }
+                    ],
+                    "requirements": [
+                        {
+                            "main": "Don't log in or enter the game",
+                            "other": "until we notify you about the order completion. Otherwise, the order will be considered completed."
                         }
                     ],
                     "exec_options": [
@@ -87,29 +94,26 @@
                     ],
                     "faq": [
                         {
-                            "question": "What is boosting in Warzone?",
-                            "answer": "Boosting in Warzone is the way to play the game without getting stuck in the grind walls and artificial stretching of gameplay. You can level up any weapon, or get any Camo with the help of our professional players."
+                            "question": "What is nuke boosting?",
+                            "answer": "Warzone Vondel Nuke boost is your easiest way to complete one of the hardest challenges in CoD Warzone. Our pro player will complete all requirements and help you get a nuke"
                         },
                         {
-                            "question": "How do you boost Warzone 2?",
-                            "answer": "There're a couple of ways to boost yourself in Warzone 2. Some people may ask, what exactly is reverse boosting? It is when a player decreases their teammates' stats. The act of reverse boosting is most commonly seen when a player runs ahead and dies while not even appearing like they’re trying to secure a kill or objective. With CoD WZ 2 boost you will forget about those people in your team."
+                            "question": "Do you get anything for getting a nuke in warzone??",
+                            "answer": "While being a very prestigious achievement, nuke also has tons of great rewards, including new Blueprint and other cosmetics."
                         },
                         {
-                            "question": "What is boosting in Warzone?",
-                            "answer": "Boosting in Warzone is the way to play the game without getting stuck in the grind walls and artificial stretching of gameplay. You can level up any weapon, or get any Camo with the help of our professional players."
+                            "question": "How do you activate nukes in Warzone",
+                            "answer": "First, you have to win 5 Warzone matches in a row. Then you get access to Vondel Champion's quest, which involves collecting 3 pieces of a nuke, assemling them and defending for two minutes straight."
                         },
                         {
-                            "question": "Can I get banned for boosting in Warzone?",
-                            "answer": "No, our boosting services are conducted in a safe and secure manner. We only use trusted boosters, so there's no risk of getting banned."
-                        },
-                        {
-                            "question": "Why should I choose boosting?",
-                            "answer": "Choosing boosting services saves you time and effort. Our professional players can help you achieve your desired goals in the game without the need for tedious grinding."
-                        },
-                        {
-                            "question": "Is boosting considered cheating?",
-                            "answer": "No, boosting is not cheating when done through our services. We ensure that the gameplay is fair and free from any cheats or unfair practices."
+                            "question": "How do Warzone nukes work?",
+                            "answer": "Basicly Nuke demolishes the map after it was activated. It's an end-game mechanic and only the most experienced and skilled players are able to engage it."
                         }
+                    ],
+                    "options": [
+                        "Normal — available boosters will work on a first-come, first-served basis",
+                        "Express — a separate and always free team will complete the order 20% hours faster",
+                        "Super Express — your order receives top priority, reducing completion time by 35% and a free stream"
                     ],
                     "price": 149.99,
                     "order_comp": "2 days",
@@ -138,6 +142,13 @@
                             "other": "This will grant access to the secret Champion's quest, which revolves around collecting three parts of the bomb, assembling it, and protecting it from other players. Completing this challenge is not easy for sure, but not with our Vondel Nuke carries! Demolish the map and get all the rewards with no hassle!"
                         }
                     ],
+                    "info_bar": "The order completion time may be extended during the event, as the Nuke can only be completed by playing in pairs.",
+                    "requirements": [
+                        {
+                            "main": "Don't log in or enter the game",
+                            "other": "until we notify you about the order completion. Otherwise, the order will be considered completed."
+                        }
+                    ],
                     "working": [
                         "Choose additional options and order CoD Nuke carry;",
                         "We form a priority list based on the execution speed and time when the order was placed; ",
@@ -191,6 +202,29 @@
                             "price": 10.00
                         }
                     ],
+                    "faq": [
+                        {
+                            "question": "What is nuke boosting?",
+                            "answer": "Warzone Vondel Nuke boost is your easiest way to complete one of the hardest challenges in CoD Warzone. Our pro player will complete all requirements and help you get a nuke"
+                        },
+                        {
+                            "question": "Do you get anything for getting a s5 new nuke?",
+                            "answer": "While being a very prestigious achievement, nuke also has tons of great rewards, including new Blueprint and other cosmetics."
+                        },
+                        {
+                            "question": "How do you activate nukes in Vondel?",
+                            "answer": "First, you have to win 5 Warzone matches in a row. Then you get access to Vondel Champion's quest, which involves collecting 3 pieces of a nuke, assemling them and defending for two minutes straight."
+                        },
+                        {
+                            "question": "How do Vondel nukes work?",
+                            "answer": "Basicly Nuke demolishes the map after it was activated. It's an end-game mechanic and only the most experienced and skilled players are able to engage it."
+                        }
+                    ],
+                    "options": [
+                        "Al Mazrah Nuke quest — we will complete the Champion's quest in Al Mazrah as well for more exclusive rewards;",
+                        "Quest Denied challenge — get one of the rarest Emblems for defusing a Nuke;",
+                        "Stream — monitor the Vondel nuke quest boost on a personal stream."
+                    ],
                     "order_comp": "2 days",
                     "price": 149.99,
                     "img": "https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/blt6f424976d3bda9cc/612548a550e10b27dfec08dd/21353-120218.png?width=&format=webply&dpr=2&disable=upscale&quality=80"
@@ -214,6 +248,12 @@
                             "other": "After we will complete Champion's Quest and get all three bomb's parts that have negativ assemble the parts, and defend the bomb for you to demolish the map and get rewards with no hassle!"
                         }
                     ],
+                    "requirements": [
+                        {
+                            "main": "Don't log in or enter the game",
+                            "other": "until we notify you about the order completion. Otherwise, the order will be considered completed."
+                        }
+                    ],
                     "working": [
                         "Choose additional options and order CoD Nuke carry;",
                         "We form a priority list based on the execution speed and time when the order was placed; ",
@@ -226,29 +266,24 @@
                     ],
                     "faq": [
                         {
-                            "question": "What is boosting in Warzone?",
-                            "answer": "Boosting in Warzone is the way to play the game without getting stuck in the grind walls and artificial stretching of gameplay. You can level up any weapon, or get any Camo with the help of our professional players."
+                            "question": "What is nuke boosting?",
+                            "answer": "Warzone Vondel Nuke boost is your easiest way to complete one of the hardest challenges in CoD Warzone. Our pro player will complete all requirements and help you get a nuke"
                         },
                         {
-                            "question": "How do you boost Warzone 2?",
-                            "answer": "There're a couple of ways to boost yourself in Warzone 2. Some people may ask, what exactly is reverse boosting? It is when a player decreases their teammates' stats. The act of reverse boosting is most commonly seen when a player runs ahead and dies while not even appearing like they’re trying to secure a kill or objective. With CoD WZ 2 boost you will forget about those people in your team."
+                            "question": "Do you get anything for getting a s5 new nuke?",
+                            "answer": "While being a very prestigious achievement, nuke also has tons of great rewards, including new Blueprint and other cosmetics."
                         },
                         {
-                            "question": "What is boosting in Warzone?",
-                            "answer": "Boosting in Warzone is the way to play the game without getting stuck in the grind walls and artificial stretching of gameplay. You can level up any weapon, or get any Camo with the help of our professional players."
+                            "question": "How do you activate nukes in Vondel?",
+                            "answer": "First, you have to win 5 Warzone matches in a row. Then you get access to Vondel Champion's quest, which involves collecting 3 pieces of a nuke, assemling them and defending for two minutes straight."
                         },
                         {
-                            "question": "Can I get banned for boosting in Warzone?",
-                            "answer": "No, our boosting services are conducted in a safe and secure manner. We only use trusted boosters, so there's no risk of getting banned."
-                        },
-                        {
-                            "question": "Why should I choose boosting?",
-                            "answer": "Choosing boosting services saves you time and effort. Our professional players can help you achieve your desired goals in the game without the need for tedious grinding."
-                        },
-                        {
-                            "question": "Is boosting considered cheating?",
-                            "answer": "No, boosting is not cheating when done through our services. We ensure that the gameplay is fair and free from any cheats or unfair practices."
+                            "question": "How do Vondel nukes work?",
+                            "answer": "Basicly Nuke demolishes the map after it was activated. It's an end-game mechanic and only the most experienced and skilled players are able to engage it."
                         }
+                    ],
+                    "options": [
+                        "Stream — monitor the WZ2 Quest Denied boost on a personal stream."
                     ],
                     "platform": [
                         "PC",
@@ -293,28 +328,8 @@
                     ],
                     "faq": [
                         {
-                            "question": "What is boosting in Warzone?",
-                            "answer": "Boosting in Warzone is the way to play the game without getting stuck in the grind walls and artificial stretching of gameplay. You can level up any weapon, or get any Camo with the help of our professional players."
-                        },
-                        {
-                            "question": "How do you boost Warzone 2?",
-                            "answer": "There're a couple of ways to boost yourself in Warzone 2. Some people may ask, what exactly is reverse boosting? It is when a player decreases their teammates' stats. The act of reverse boosting is most commonly seen when a player runs ahead and dies while not even appearing like they’re trying to secure a kill or objective. With CoD WZ 2 boost you will forget about those people in your team."
-                        },
-                        {
-                            "question": "What is boosting in Warzone?",
-                            "answer": "Boosting in Warzone is the way to play the game without getting stuck in the grind walls and artificial stretching of gameplay. You can level up any weapon, or get any Camo with the help of our professional players."
-                        },
-                        {
-                            "question": "Can I get banned for boosting in Warzone?",
-                            "answer": "No, our boosting services are conducted in a safe and secure manner. We only use trusted boosters, so there's no risk of getting banned."
-                        },
-                        {
-                            "question": "Why should I choose boosting?",
-                            "answer": "Choosing boosting services saves you time and effort. Our professional players can help you achieve your desired goals in the game without the need for tedious grinding."
-                        },
-                        {
-                            "question": "Is boosting considered cheating?",
-                            "answer": "No, boosting is not cheating when done through our services. We ensure that the gameplay is fair and free from any cheats or unfair practices."
+                            "question": "What are Warzone ranked play divisions?",
+                            "answer": "Bronze – 0-899 SR; Silver – 900-2,099 SR; Gold – 2,100-3,599 SR;Platinum – 3,600-5,399 SR; Diamond – 5,400-7,499 SR;Crimson – 7,500-9,999 SR; Iridescent – 10,000 SR minimum; Top 250 – 10,000+ SR."
                         }
                     ],
                     "features": [
@@ -331,6 +346,7 @@
                             "other": "Just choose the desired number of Skill Rating points, and our professional CoD WZ2 booster will get the job done for you! If you want to get more than 10,000 SR in self-play, we will assign 2 pros to your order."
                         }
                     ],
+                    "info_bar": "If you've made progress in unlocking Season 06 Rewards, message us in the chat, and we'll adjust the price with a custom offer.",
                     "working": [
                         "Select preferred options and place an order for our Warzone Ranked Play boosting service",
                         "We form a priority list based on the execution speed and time when the order was placed",
@@ -369,6 +385,36 @@
                             "name": "Stream",
                             "price": 10.00
                         }
+                    ],
+                    "rewards": [
+                        {
+                            "desc": "During Season 06, players have the opportunity to unlock the following rewards in Warzone:",
+                            "points": [
+                                "Get 25 Kills or Assists — WZ Season 06 Competitor Weapon Sticker;",
+                                "Get 100 Kills or Assists — WZ Ranked Play Season 06 Loading Screen;",
+                                "Get 500 Kills or Assists — WZ Season 06 Ranked Veteran Weapon Camo;",
+                                "Finish Top 15 25 Times — Full Send Large Weapon Decal;",
+                                "Finish Top 5 10 Times — Pro Issue Signal 50 Weapon Blueprint;",
+                                "Finish 1st Place — Rat Around and Find Out Weapon Charm."
+                            ]
+                        },
+                        {
+                            "desc": "Season 06 offers special Division Rewards that you'll receive at the end of the Season based on the highest Skill Division you've reached during that Warzone Season:",
+                            "points": [
+                                "Top 250 — WZ Season 06 Top 250 Vehicle Skin, Emblem, and Calling Card;",
+                                "Iridescent — WZ Season 06 Iridescent Vehicle Skin, Emblem, and Calling Card;",
+                                "Crimson — WZ Season 06 Crimson Vehicle Skin and Emblem;",
+                                "Diamond — WZ Season 06 Diamond Vehicle Skin and Emblem;",
+                                "Platinum — WZ Season 06 Platinum Vehicle Skin and Emblem;",
+                                "Gold — WZ Season 06 Gold Vehicle Skin and Emblem;",
+                                "Silver — Emblem;",
+                                "Bronze — Emblem."
+                            ]
+                        }
+                    ],
+                    "options": [
+                        "Stream — monitor Warzone 2 SR boost on a personal stream;",
+                        "Unlock Season 6 Rewards — we will fulfill the requirements and unlock the chosen exclusive rewards."
                     ],
                     "price": 31.00,
                     "order_comp": "12 hours",
@@ -411,11 +457,6 @@
                     "other": "Increase your K/D ratio. Level up the battle pass and account. Every Warzone 2 boost offer is customizable to satisfy your needs."
                 }
             ],
-            "add_options": [
-                "Vondel Nuke Quest — we will complete the Champion's quest in Vondel for more rewards",
-                "Quest Denied Emblem — get one of the rarest Emblems for defusing a Nuke",
-                "Stream — monitor the Warzone 2 nuke quest boost on a personal stream"
-            ],
             "services": "Pro players take your account or join your party and use their superior skills to beat most, if not all, of the competition you encounter. Grind? Leave it to call of duty warzone 2 booster service. Get anything you want! All our Warzone 2 boosting is done through VPN proxies. We never use any cheats, hacks, or third-party software. Only fair play and pure skill. You can track progress in your Discord chat. Or see all the CoD WRZ 2 boosting happening on stream or in the record.",
             "faq": [
                 {
@@ -441,28 +482,6 @@
                 {
                     "question": "Is boosting considered cheating?",
                     "answer": "No, boosting is not cheating when done through our services. We ensure that the gameplay is fair and free from any cheats or unfair practices."
-                }
-            ],
-            "faqData": [
-                {
-                    "id": 1,
-                    "question": "What is nuke boosting?",
-                    "answer": "Warzone Nuke boost is your easiest way to complete one of the hardest challenges in CoD Warzone. Our pro player will complete all requirements and help you get a nuke."
-                },
-                {
-                    "id": 2,
-                    "question": "Do you get anything for getting a nuke in warzone?",
-                    "answer": "While being a very prestigious achievement, nuke also has tons of great rewards, including Operator Skins, Blueprints and other cosmetics."
-                },
-                {
-                    "id": 3,
-                    "question": "How do you activate nukes in warzone?",
-                    "answer": "First, you have to win 5 Warzone matches in a row. Then you get access to Champion's quest, which involves collecting 3 pieces of a nuke, assembling them and defending for two minutes straight."
-                },
-                {
-                    "id": 4,
-                    "question": "How do Warzone nukes work?",
-                    "answer": "Basically, Nuke demolishes the map after it was activated. It's an end-game mechanic and only the most experienced and skilled players are able to engage it."
                 }
             ],
             "working": [

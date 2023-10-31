@@ -1,10 +1,12 @@
 import { useTheme } from "@emotion/react";
-import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import { Alert, Box, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import FAQ from "./FAQ";
 import Side_Card from "./Side_Card";
 import Main_FAQ from "./Main_FAQ";
 import useFetchData from "./custom_hooks/useFetchData";
+import CheckIcon from "@mui/icons-material/Check";
+import Info from "./Info";
 
 const main_heading = {
   fontWeight: "bold",
@@ -85,6 +87,7 @@ const MainComponent = () => {
                   )}
                 </Typography>
               </Container>
+              <Info />
               <Container
                 maxWidth="sm"
                 sx={{ marginLeft: "-20px", marginTop: 2 }}
@@ -197,19 +200,26 @@ const MainComponent = () => {
                     padding: 1,
                   }}
                 >
-                  {e.add_options.map((feature, index) => {
+                  {sub_data.map((e) => {
                     return (
-                      <li
-                        key={index}
-                        sx={listItem}
-                        style={{
-                          fontSize: 18,
-                          padding: 3,
-                          color: theme.palette.grey.main,
-                        }}
-                      >
-                        {feature}
-                      </li>
+                      <>
+                        {e &&
+                          e.options.map((feature, index) => {
+                            return (
+                              <li
+                                key={index}
+                                sx={listItem}
+                                style={{
+                                  fontSize: 18,
+                                  padding: 3,
+                                  color: theme.palette.grey.main,
+                                }}
+                              >
+                                {feature}
+                              </li>
+                            );
+                          })}
+                      </>
                     );
                   })}
                 </ul>
@@ -235,29 +245,66 @@ const MainComponent = () => {
           maxWidth="md"
           sx={{ marginLeft: "-10px", marginTop: 2, marginBottom: 2 }}
         >
-          {singlecat.map((e, index) => {
+          {sub_data.map((e, index) => {
             return (
               <>
-                <FAQ
-                  key={index}
-                  title="Requirements"
-                  descriptions={e.requirements.map((e) => (
-                    <>
-                      <Typography sx={{ color: "#FE4661", fontWeight: "bold" }}>
-                        {e.main}
-                        <Typography
-                          variant="span"
-                          sx={{
-                            color: theme.palette.grey.main,
-                            fontWeight: "normal",
-                          }}
-                        >
-                          &nbsp;{e.other}
-                        </Typography>
-                      </Typography>
-                    </>
-                  ))}
-                />
+                {e && e.requirements ? (
+                  <FAQ
+                    key={index}
+                    title="Requirements"
+                    descriptions={
+                      e &&
+                      e.requirements.map((e) => (
+                        <>
+                          <Typography
+                            sx={{ color: "#FE4661", fontWeight: "bold" }}
+                          >
+                            {e.main}
+                            <Typography
+                              variant="span"
+                              sx={{
+                                color: theme.palette.grey.main,
+                                fontWeight: "normal",
+                              }}
+                            >
+                              &nbsp;{e.other}
+                            </Typography>
+                          </Typography>
+                        </>
+                      ))
+                    }
+                  />
+                ) : (
+                  <FAQ
+                    key={index}
+                    title="Rewards"
+                    descriptions={
+                      e &&
+                      e.rewards.map((e) => (
+                        <>
+                          <Typography
+                            sx={{ fontWeight: "bold", listStyle: "none" }}
+                            key={index}
+                          >
+                            {e.desc}
+                            <Typography
+                              variant="span"
+                              sx={{
+                                color: theme.palette.grey.main,
+                                fontWeight: "normal",
+                              }}
+                            >
+                              &nbsp;
+                              {e.points.map((e, index) => (
+                                <li key={index}>{e}</li>
+                              ))}
+                            </Typography>
+                          </Typography>
+                        </>
+                      ))
+                    }
+                  />
+                )}
               </>
             );
           })}

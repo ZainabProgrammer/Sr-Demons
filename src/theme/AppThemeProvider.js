@@ -38,6 +38,10 @@ const theme = createTheme({
     purple: {
       main: "#533EC9",
     },
+    orange: {
+      main: "#43343E",
+      dark: "#FF9448",
+    },
   },
   components: {
     MuiTextField: {
