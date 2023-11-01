@@ -10,15 +10,22 @@ import {
   Divider,
   Stack,
 } from "@mui/material";
+
 import { useTheme } from "@emotion/react";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import useGetCurrency from "./custom_hooks/useGetCurrency";
 import { useDispatch, useSelector } from "react-redux";
-import { convertPricesToEuro, toggleCart } from "@/store/CategorySlice";
+import {
+  addToCart,
+  convertPricesToEuro,
+  incrementCartCount,
+  toggleCart,
+} from "@/store/CategorySlice";
 import { ShoppingCart } from "@mui/icons-material";
 import useFetchData from "./custom_hooks/useFetchData";
 import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
+import RangeSlider from "./RangeSlider";
 const DynamicCard = dynamic(() => import("@mui/material/Card"), { ssr: false });
 
 const btn_style = {
@@ -168,6 +175,7 @@ export default function Side_Card() {
                   variant="h5"
                   fontSize={15}
                   component="div"
+                  color="grey.main"
                 >
                   PLATFORM <Divider />
                   {e &&
@@ -199,7 +207,7 @@ export default function Side_Card() {
                       </span>
                     ))}
                 </Typography>
-                <Typography component="div" color="white.main" mt={3}>
+                <Typography component="div" mt={3} color="grey.main">
                   BOOST METHOD <Divider />
                   {e &&
                     e.boost_method.map((e, index) => (
@@ -236,7 +244,7 @@ export default function Side_Card() {
                       </span>
                     ))}
                 </Typography>
-                <Typography component="div" color="white.main" mt={3}>
+                <Typography component="div" mt={3} color="grey.main">
                   EXECUTION OPTIONS <Divider />
                   {e &&
                     e.exec_options.map((e, index) => (
@@ -273,7 +281,9 @@ export default function Side_Card() {
                       </span>
                     ))}
                 </Typography>
-                <Typography component="div" color="white.main" mt={3}>
+                {sub_data.map((e) => e && e.rewards && <RangeSlider />)}
+
+                <Typography component="div" mt={3} color="grey.main">
                   ADDITIONAL OPTIONS <Divider />
                   {e &&
                     e.add_options.map((el, index) => (
@@ -312,15 +322,19 @@ export default function Side_Card() {
                   sx={{
                     position: "sticky",
                     bottom: `${topPosition}px`,
-                    padding: "11px",
+                    padding: "11px 0",
                     paddingBottom: "60px",
                     width: "100%",
-                    left: 0,
+                    // left: 0,
                     background: theme.palette.lightBlack.main,
                   }}
                 >
                   <Divider
-                    sx={{ background: theme.palette.grey.main, mt: 3 }}
+                    sx={{
+                      background: theme.palette.bodyColor.main,
+                      mt: 3,
+                      height: 2,
+                    }}
                   />
 
                   <Typography
@@ -352,6 +366,7 @@ export default function Side_Card() {
                       </Typography>
                     </Typography>
                   </Stack>
+
                   <Button
                     fullWidth
                     sx={{
@@ -363,7 +378,11 @@ export default function Side_Card() {
                         opacity: 0.9,
                       },
                     }}
-                    onClick={() => dispatch(toggleCart(true))}
+                    onClick={() => {
+                      dispatch(toggleCart(true));
+                      dispatch(incrementCartCount());
+                      dispatch(addToCart(e));
+                    }}
                     variant="contained"
                   >
                     <ShoppingCart sx={{ marginRight: 1 }} />

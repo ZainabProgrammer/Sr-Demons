@@ -5,7 +5,7 @@ import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import { Stack } from "@mui/system";
 import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { AppBar, Badge, Box, Toolbar, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import {
   Dialog,
@@ -50,11 +50,7 @@ const Header = ({ handleDrawerToggle }) => {
   const theme = useTheme();
 
   const openCart = () => {
-    dispatch(() => toggleCart(true));
-  };
-
-  const closeCart = () => {
-    dispatch(() => toggleCart(false));
+    dispatch(() => toggleCart());
   };
 
   return (
@@ -225,13 +221,8 @@ const Header = ({ handleDrawerToggle }) => {
                 />
               </Typography>
 
-              <div
-                onClick={() => dispatch(toggleCart(true))}
-                style={{ cursor: "pointer" }}
-              >
+              <div onClick={openCart} style={{ cursor: "pointer" }}>
                 <Cart_Details
-                  // openCart={dispatch(toggleCart(false))}
-                  // closeCart={dispatch(toggleCart(false))}
                   icon={
                     <>
                       <Typography
@@ -240,11 +231,18 @@ const Header = ({ handleDrawerToggle }) => {
                           background: theme.palette.grey.main,
                         }}
                       >
-                        <ShoppingCartIcon
-                          fontSize="small"
-                          className="icon"
-                          sx={{ color: theme.palette.bodyColor.main }}
-                        />
+                        <Badge
+                          badgeContent={useSelector(
+                            (state) => state.category.cart.length
+                          )}
+                          color="white"
+                        >
+                          <ShoppingCartIcon
+                            fontSize="small"
+                            className="icon"
+                            sx={{ color: theme.palette.bodyColor.main }}
+                          />
+                        </Badge>
                       </Typography>
                     </>
                   }

@@ -8,15 +8,25 @@ const categorySlice = createSlice({
     allData: [data], // Assuming this is your data structure
     toEuro: false,
     isCartOpen: false,
+    cartCount: 0,
+    cart: [],
   },
   reducers: {
     toggleCurrency: (state, action) => {
       state.toEuro = action.payload;
     },
-    toggleCart: (state, action) => {
-      state.isCartOpen = action.payload;
+    toggleCart: (state) => {
+      state.isCartOpen = !state.isCartOpen;
     },
-
+    incrementCartCount: (state) => {
+      state.cartCount += 1;
+    },
+    addToCart: (state, action) => {
+      state.cart.push(action.payload);
+    },
+    reomveFromCart: (state, action) => {
+      state.cart = state.cart.filter((e, index) => index !== action.payload);
+    },
     // Create a new action to convert prices to Euro
     convertPricesToEuro: (state, action) => {
       const conversionRate = action.payload; // You should pass the rate as payload
@@ -55,7 +65,13 @@ const categorySlice = createSlice({
   },
 });
 
-export const { toggleCurrency, convertPricesToEuro, toggleCart } =
-  categorySlice.actions;
+export const {
+  toggleCurrency,
+  convertPricesToEuro,
+  toggleCart,
+  incrementCartCount,
+  addToCart,
+  reomveFromCart,
+} = categorySlice.actions;
 
 export default categorySlice.reducer;

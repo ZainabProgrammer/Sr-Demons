@@ -3,33 +3,39 @@ import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 import { useTheme } from "@emotion/react";
-import { Typography } from "@mui/material";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Container,
+  Typography,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack } from "@mui/system";
 import CloseIcon from "@mui/icons-material/Close";
-import useFetchData from "./custom_hooks/useFetchData";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCart } from "@/store/CategorySlice";
+import { reomveFromCart, toggleCart } from "@/store/CategorySlice"; // Import the toggleCart action from your Redux slice
 
 export default function Cart_Details({ icon }) {
   const theme = useTheme();
-  const { isCartOpen } = useFetchData();
+  const isCartOpen = useSelector((state) => state.category.isCartOpen); // Adjust the slice name if needed
+  const cartData = useSelector((state) => state.category.cart);
+
   const dispatch = useDispatch();
 
-  const toggleDrawer = (anchor, open) => () => {
+  const handleToggleCart = () => {
     dispatch(toggleCart());
-
-    return;
   };
 
-  console.log(isCartOpen, "are they same");
-  const list = (anchor) => (
+  const list = (
     <Box
       sx={{
         width: "100%",
         display: "flex",
         alignItems: "center",
         background: theme.palette.bodyColor.main,
-        height: "100%",
+        height: cartData.length <= 0 ? "100%" : "100vmax",
         color: theme.palette.grey.main,
         flexDirection: "column",
         "@media(min-width:600px)": {
@@ -53,8 +59,11 @@ export default function Cart_Details({ icon }) {
           color="white.main"
           mt={8}
           sx={{ textAlign: "start" }}
+          fontWeight="bold"
         >
-          Shopping Cart
+          {cartData.length <= 0
+            ? "Shopping Cart"
+            : ` Shopping Cart (${cartData.length}) items`}
         </Typography>
 
         <CloseIcon
@@ -68,62 +77,149 @@ export default function Cart_Details({ icon }) {
             width: 40,
             height: 40,
           }}
-          onClick={toggleDrawer(anchor, false)}
-          onKeyDown={toggleDrawer(anchor, false)}
+          onClick={handleToggleCart}
           fontSize="large"
         />
       </Stack>
+
       <Stack
         spacing={3}
         alignItems="center"
-        justifyContent="center"
+        justifyContent={cartData.length <= 0 ? "center" : "start"}
         height="100%"
         textAlign="center"
-        p={4}
+        pt={4}
       >
-        <Typography color="white.main" variant="h4">
-          Your shopping cart is empty
-        </Typography>
-        <Typography variant="body1" fontSize={15}>
-          Don&apos;t wait, let&apos;s get shopping and find your next deal
-          today!
-        </Typography>
-        <div style={{ textAlign: "center" }}>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              background: theme.palette.purple.main,
-              textTransform: "capitalize",
-              mt: 2,
-              ":hover": {
-                color: "white.main",
-                backgroundColor: "purple.main",
-                opacity: 0.9,
-              },
-            }}
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-          >
-            Start Shopping
-          </Button>
-        </div>
+        {cartData.length <= 0 ? (
+          <>
+            <Typography color="white.main" variant="h4">
+              Your shopping cart is empty
+            </Typography>
+            <Typography variant="body1" fontSize={15}>
+              Don't wait, let's get shopping and find your next deal today!
+            </Typography>
+            <div style={{ textAlign: "center" }}>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  background: theme.palette.purple.main,
+                  textTransform: "capitalize",
+                  mt: 2,
+                  ":hover": {
+                    color: "white.main",
+                    backgroundColor: "purple.main",
+                    opacity: 0.9,
+                  },
+                }}
+                onClick={handleToggleCart}
+              >
+                Start Shopping
+              </Button>
+            </div>
+          </>
+        ) : (
+          <>
+            {cartData.map((e, index) => {
+              return (
+                <Box key={index} sx={{ maxWidth: "100%" }}>
+                  <Card
+                    sx={{
+                      maxWidth: "100%",
+                      background: theme.palette.lightBlack.main,
+                      color: theme.palette.grey.main,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    <Stack direction="row">
+                      <CardMedia
+                        sx={{ width: "10rem", height: "6rem" }}
+                        image={e.img}
+                        title="green iguana"
+                      />
+                      <CardContent>
+                        <Stack>
+                          <Typography
+                            gutterBottom
+                            variant="p"
+                            component="div"
+                            textAlign="start"
+                            fontWeight="bold"
+                          >
+                            {e.title}
+                          </Typography>
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: 9,
+                            }}
+                          >
+                            {e.platform.map((e) => (
+                              <Typography fontWeight="bold" fontSize={12}>
+                                {e}
+                              </Typography>
+                            ))}
+                          </div>
+                          <Typography
+                            mt={1}
+                            fontSize={12}
+                            variant="p"
+                            textAlign="start"
+                          >
+                            Sold by : Sr Demons
+                          </Typography>
+                          <Typography
+                            mt={1}
+                            fontSize={12}
+                            variant="p"
+                            textAlign="start"
+                          >
+                            Order completion: {e.order_comp}
+                          </Typography>
+                        </Stack>
+                      </CardContent>
+                      <Stack
+                        justifyContent="space-between"
+                        mt={2}
+                        mb={2}
+                        mr={1}
+                      >
+                        <Typography fontWeight="bold" color="white.main">
+                          ${e.price}
+                        </Typography>
+                        <Button
+                          sx={{ color: "grey.main" }}
+                          onClick={() => dispatch(reomveFromCart(index))}
+                        >
+                          <Typography component="div" display="flex" gap={1}>
+                            {" "}
+                            <DeleteIcon /> Remove
+                          </Typography>
+                        </Button>
+                      </Stack>
+                    </Stack>
+                  </Card>
+                </Box>
+              );
+            })}
+          </>
+        )}
       </Stack>
     </Box>
   );
 
   return (
     <div>
-      <div size="sm" onClick={toggleDrawer("right", true)}>
+      <div size="sm" onClick={handleToggleCart}>
         {icon}
       </div>
       <SwipeableDrawer
         anchor="right"
         open={isCartOpen}
-        onClose={toggleDrawer("right", false)}
-        onOpen={toggleDrawer("right", true)}
+        onClose={handleToggleCart}
+        onOpen={handleToggleCart}
       >
-        {list("right")}
+        {list}
       </SwipeableDrawer>
     </div>
   );
