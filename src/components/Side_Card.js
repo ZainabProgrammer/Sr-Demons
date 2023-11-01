@@ -281,7 +281,9 @@ export default function Side_Card() {
                       </span>
                     ))}
                 </Typography>
-                {sub_data.map((e) => e && e.rewards && <RangeSlider />)}
+                {sub_data.map(
+                  (e, index) => e && e.rewards && <RangeSlider key={index} />
+                )}
 
                 <Typography component="div" mt={3} color="grey.main">
                   ADDITIONAL OPTIONS <Divider />
